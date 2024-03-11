@@ -1,4 +1,4 @@
-# Sumission of Brilla Skills Assesment
+# Submission of Brilla Skills Assesment
 
 # Speech Recognition Program
 This program utilizes the speech_recognition library to convert spoken words into text. It captures audio from the microphone and then uses the Google Web Speech API for recognition and displays the detected words captured from speech.
