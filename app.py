@@ -17,7 +17,7 @@ while True:  # Start an infinite loop
         try:
             audio = recognizer.listen(source, timeout=3)  # Listen for audio input with a timeout of 3 seconds
         except sr.WaitTimeoutError:  # Handle a timeout error
-            print("Timeout, no speech detected.")  # Print a message indicating no speech was detected
+            print("Timeout, no speech was detected.")  # Print a message indicating no speech was detected
             continue  # Continue to the next iteration of the loop
 
     try:
@@ -25,11 +25,11 @@ while True:  # Start an infinite loop
         recognized_text = recognizer.recognize_google(audio, language='en-US')
         print("Detected words: " + recognized_text)  # Print the transcribed words
 
-        # Calculate metrics
+        # Calculating the metrics
         total_reference_words = len(reference_text.split())  # Get the total number of words in the reference text
         recognized_words = recognized_text.split()  # Split the recognized text into words
 
-        # Calculate the number of correct, inserted, and deleted words
+        # Calculate the number of correct, inserted and deleted words
         for word in recognized_words:
             if word in reference_text.split():
                 correct += 1
@@ -43,8 +43,8 @@ while True:  # Start an infinite loop
         substitutions = total_reference_words - correct - deletions  # Calculate the number of substitutions
 
         if total_reference_words > 0:
-            wer = (substitutions + deletions + insertions) / total_reference_words  # Calculate Word Error Rate
-            cer = (substitutions + deletions + insertions) / sum(len(word) for word in reference_text.split())  # Calculate Character Error Rate
+            wer = (substitutions + deletions + insertions) / total_reference_words  # Calculate WER
+            cer = (substitutions + deletions + insertions) / sum(len(word) for word in reference_text.split())  # Calculate CER
             accuracy = correct / total_reference_words  # Calculate accuracy
 
             print(f"WER: {wer:.2f}, CER: {cer:.2f}, Accuracy: {accuracy:.2f}")  # Print the metrics
